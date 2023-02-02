@@ -23,7 +23,12 @@ const Header = () => {
   const handleClick = () => {
     dispatch(getData(""));
     navigate("/");
-    setInput("")
+    setInput("");
+  };
+  const token = localStorage.getItem("token");
+  const Logout = () => {
+    localStorage.removeItem("token");
+    navigate("/login");
   };
 
   return (
@@ -70,6 +75,14 @@ const Header = () => {
                   <h2>BookMark - </h2>
                   <h2>{BookData?.length}</h2>
                 </div>
+              )}
+              {token && (
+                <button
+                  onClick={Logout}
+                  className="bg-black text-white p-2 rounded-md"
+                >
+                  Logout
+                </button>
               )}
             </div>
           </nav>
